@@ -8,10 +8,12 @@ import com.westerhoud.osrs.taskman.domain.TierProgress;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Map;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -62,7 +64,7 @@ public class TaskmanPluginPanel extends PluginPanel {
 
     setOpaque(false);
     setBorder(new EmptyBorder(50, 0, 0, 0));
-    setLayout(new BorderLayout());
+//    setLayout(new BorderLayout());
 
     taskPanel = new JPanel(new BorderLayout(10, 10));
     taskPanel.setBorder(new EmptyBorder(0, 10, 0, 10));
@@ -127,9 +129,13 @@ public class TaskmanPluginPanel extends PluginPanel {
     tryAgainPanel.setVisible(false);
     errorPanel.add(tryAgainPanel, BorderLayout.SOUTH);
     errorPanel.setContent("Please login first!", "");
-    add(taskPanel, BorderLayout.NORTH);
-    add(progressPanel, BorderLayout.CENTER);
-    add(errorPanel, BorderLayout.SOUTH);
+
+    final JPanel noticePanel = new PhaseOutNoticeComponent();
+
+    add(noticePanel);
+    add(taskPanel);
+    add(progressPanel);
+    add(errorPanel);
   }
 
   public void init() {
